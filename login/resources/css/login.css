@@ -19,6 +19,9 @@ body{
 .mdc-text-field-error{
     color: var(--mdc-theme-error, #b00020) !important;
 }
+.mdc-typography-color{
+    color: var(--mdc-theme-text-secondary-on-light, rgba(0, 0, 0, 0.54));
+}
 
 hr{
     width: 100%;

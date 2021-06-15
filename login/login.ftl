@@ -5,9 +5,9 @@
             
         <#elseif section = "form">
             <div class="mdc-card" style="margin-top: 2em">
-            <div id="kc-form" class="mdc-card-wrapper__text-section">
-                <span class="mdc-typography mdc-typography--headline6">${msg("loginAccountTitle")}</span>
-            </div>
+                <div id="kc-form" class="mdc-card-wrapper__text-section">
+                    <span class="mdc-typography mdc-typography--headline6">${msg("loginAccountTitle")}</span>
+                </div>
                 <div id="kc-form" class="mdc-card-wrapper__text-section">
                 <div id="kc-form-wrapper">
                     <#if realm.password>
@@ -130,14 +130,15 @@
         <hr>
             <div class="mr ${properties.kcFormOptionsWrapperClass!}">
                 <#if realm.resetPasswordAllowed>
-                    <a tabindex="5" href="${url.loginResetCredentialsUrl}">${msg("doForgotPassword")}</a>
+                    <a tabindex="5" href="${url.loginResetCredentialsUrl}" class="mdc-button">  <span class="mdc-button__ripple"></span> ${msg("doForgotPassword")}</a>
+                    <#--  <a tabindex="5" href="${url.loginResetCredentialsUrl}">${msg("doForgotPassword")}</a>  -->
                 </#if>
             </div>
             <#if realm.password && realm.registrationAllowed && !registrationDisabled??>
                 <div class="ml" id="kc-registration-container">
                     <div id="kc-registration">
                         <#--  <span>${msg("noAccount")}   -->
-                        <a tabindex="6" href="${url.registrationUrl}">${msg("doRegister")}</a>
+                        <a tabindex="6" href="${url.registrationUrl}" class="mdc-button">  <span class="mdc-button__ripple"></span> ${msg("doRegister")}</a>
                         <#--  </span>  -->
                     </div>
                 </div>

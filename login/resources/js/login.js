@@ -26,6 +26,10 @@ window.onload = function() {
     // new mdc.ripple.MDCRipple.attachTo(e);
   });
 
+  document.querySelectorAll('.mdc-chip-set').forEach(function(e) {
+    new mdc.chips.MDCChipSet.attachTo(e);
+  });
+
   // // Add a menu effect to all MDC menus
   // const menu = new MDCMenu(document.querySelector('.mdc-menu'));
   // menu.open = true;

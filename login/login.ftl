@@ -27,14 +27,14 @@
                                         <input tabindex="1" id="username" class="mdc-text-field__input ${properties.kcInputClass!}" name="username" value="${(login.username!'')}" type="text" disabled />
                                     <#else>
                                         <input tabindex="1" id="username" class="mdc-text-field__input ${properties.kcInputClass!}" name="username" value="${(login.username!'')}"  type="text" autofocus autocomplete="off"
-                                            aria-invalid="<#if messagesPerField.existsError('username','password')>true</#if>"
+                                            aria-invalid="<#if messagesPerField.existsError('username')>true</#if>"
                                         />
                                         <#--  poner los estilos para cuando los datos son erroneos  -->
                                 </div>
-                                        <#if messagesPerField.existsError('username','password')>
+                                        <#if messagesPerField.existsError('username')>
                                             <div class="mdc-text-field-helper-line">
                                                 <span id="input-error" class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent mdc-text-field-helper-text--validation-msg mdc-text-field-error ${properties.kcInputErrorMessageClass!}" aria-live="polite">
-                                                        ${kcSanitize(messagesPerField.getFirstError('username','password'))?no_esc}
+                                                        ${kcSanitize(messagesPerField.getFirstError('username'))?no_esc}
                                                 </span>
                                             </div>
                                         </#if>
@@ -53,9 +53,16 @@
                                         <div class="mdc-notched-outline__trailing"></div>
                                     </div>
                                     <input tabindex="2" id="password" class="mdc-text-field__input ${properties.kcInputClass!}" name="password" type="password" autocomplete="off"
-                                        aria-invalid="<#if messagesPerField.existsError('username','password')>true</#if>"
+                                        aria-invalid="<#if messagesPerField.existsError('password')>true</#if>"
                                     />
                                 </div>
+                                <#if messagesPerField.existsError('password')>
+                                    <div class="mdc-text-field-helper-line">
+                                        <span id="input-error" class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent mdc-text-field-helper-text--validation-msg mdc-text-field-error ${properties.kcInputErrorMessageClass!}" aria-live="polite">
+                                                ${kcSanitize(messagesPerField.getFirstError('password'))?no_esc}
+                                        </span>
+                                    </div>
+                                </#if>
                             </div>
                             <#--  End Password field  -->
 
@@ -107,17 +114,18 @@
                 <#if realm.password && social.providers??>
                     <div id="kc-social-providers" class="${properties.kcFormSocialAccountSectionClass!}">
                         <hr/>
-                        <h4>${msg("identity-provider-login-label")}</h4>
-
-                        <ul class="${properties.kcFormSocialAccountListClass!} <#if social.providers?size gt 3>${properties.kcFormSocialAccountListGridClass!}</#if>">
+                        <div id="kc-form" class="mdc-card-wrapper__text-section">
+                            <span class="mdc-typography mdc-typography--headline6">${msg("identity-provider-login-label")}</span>
+                        </div>
+                        <ul class="mdc-chip-set ${properties.kcFormSocialAccountListClass!} <#if social.providers?size gt 3>${properties.kcFormSocialAccountListGridClass!}</#if>">
                             <#list social.providers as p>
-                                <a id="social-${p.alias}" class="${properties.kcFormSocialAccountListButtonClass!} <#if social.providers?size gt 3>${properties.kcFormSocialAccountGridItem!}</#if>"
-                                        type="button" href="${p.loginUrl}">
+                                <a id="social-${p.alias}" class="mdc-chip ${properties.kcFormSocialAccountListButtonClass!} <#if social.providers?size gt 3>${properties.kcFormSocialAccountGridItem!}</#if>" type="button" href="${p.loginUrl}">
+                                    <span class="mdc-chip__ripple"></span>
                                     <#if p.iconClasses?has_content>
                                         <i class="${properties.kcCommonLogoIdP!} ${p.iconClasses!}" aria-hidden="true"></i>
                                         <span class="${properties.kcFormSocialAccountNameClass!} kc-social-icon-text">${p.displayName!}</span>
                                     <#else>
-                                        <span class="${properties.kcFormSocialAccountNameClass!}">${p.displayName!}</span>
+                                        <span class="mdc-chip__text ${properties.kcFormSocialAccountNameClass!}">${p.displayName!}</span>
                                     </#if>
                                 </a>
                             </#list>

@@ -1,0 +1,58 @@
+body{
+    margin: 0;
+}
+
+.mdc-card{
+    width: 100%;
+    min-width: 15em;
+    max-width: 28em;
+    margin: 16px;
+    padding: 16px;
+}
+.text-field-container{
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+.mdc-text-field-100{
+    width: 100%;
+}
+.mdc-text-field-error{
+    color: var(--mdc-theme-error, #b00020) !important;
+}
+.mdc-typography-color{
+    color: var(--mdc-theme-text-secondary-on-light, rgba(0, 0, 0, 0.54));
+}
+
+hr{
+    width: 100%;
+    height: 2px;
+    border: transparent;
+    background-color: #e6e6e6;
+    margin-top: 16px;
+}
+
+/* ************************* FLEX SECCION *********************** */
+.flex-center{
+    justify-content: center;    
+}
+.flex-between{
+    justify-content: space-between;    
+}
+.flex, .flex-center, .flex-between{
+    display: flex;
+}
+.wrap{
+    flex-wrap: wrap;
+}
+
+
+
+
+/* ************************* MARGIN SECCION *********************** */
+.ml{
+    margin-left: 8px;
+}
+
+.mr{
+    margin-right: 8px;
+}

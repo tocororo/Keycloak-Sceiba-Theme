@@ -30,7 +30,7 @@
         <nav class="navbar" role="navigation">
             <div class="navbar-header">
                 <div class="container">
-                    <h1 class="navbar-title">Keycloak</h1>
+                    <h1 class="navbar-title">${properties.accountTitleHtml}</h1>
                 </div>
             </div>
             <div class="navbar-collapse navbar-collapse-1">

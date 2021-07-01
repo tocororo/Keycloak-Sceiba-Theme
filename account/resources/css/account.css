@@ -2,6 +2,10 @@ body{
     margin: 0;
 }
 
+.mdc-top-app-bar{
+    position: relative;
+}
+
 .mdc-card{
     width: 100%;
     min-width: 15em;
@@ -21,6 +25,20 @@ body{
 }
 .mdc-typography-color{
     color: var(--mdc-theme-text-secondary-on-light, rgba(0, 0, 0, 0.54));
+}
+
+.mdc-list-item {
+    height: 48px;
+}
+.mdc-list-item__text{
+    display: flex;
+    align-items: center;
+    inline-size: max-content;
+}
+
+.mdc-menu-surface {
+    right: 16px;
+    top: 32px;
 }
 
 hr{

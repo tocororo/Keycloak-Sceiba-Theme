@@ -26,33 +26,56 @@
 </head>
 <body class="admin-console user ${bodyClass}">
         
-    <header class="navbar navbar-default navbar-pf navbar-main header">
-        <nav class="navbar" role="navigation">
-            <div class="navbar-header">
-                <div class="container">
-                    <h1 class="navbar-title">${properties.accountTitleHtml}</h1>
+    <header class="mdc-top-app-bar mdc-theme--secondary-bg mdc-elevation--z8 ${properties.kcFormHeaderClass!}">
+        <nav class="mdc-top-app-bar__row" role="navigation">
+            <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                <h1 class="navbar-title">${properties.accountTitleHtml}</h1>
+            </div>
+            <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+                <#if realm.internationalizationEnabled>
+                    <div class="mdc-menu-surface--anchor mr">
+                        <button class="mdc-icon-button material-icons mdc-ripple-upgraded--unbounded mdc-ripple-upgraded" aria-label="Add to favorites" onclick="mdcMenuAddClass('kc-locale-dropdown')">L</button>
+                        <div class="mdc-menu mdc-menu-surface" name="locale-menu" id="kc-locale-dropdown">
+                            <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
+                                <#list locale.supported as l>
+                                    <#if locale.current == l.label>
+                                        <a class="mdc-list-item mdc-list-item--activated"  href="${l.url}">
+                                            <span class="mdc-list-item__ripple"></span>
+                                            <span class="mdc-list-item__text">${l.label}</span>
+                                        </a>
+                                    <#else>
+                                        <a class="mdc-list-item"  href="${l.url}">
+                                            <span class="mdc-list-item__ripple"></span>
+                                            <span class="mdc-list-item__text">${l.label}</span>
+                                        </a>
+                                    </#if>
+                                </#list>
+                            </ul>
+                        </div>
+                    </div>
+                </#if>
+
+                <div class="mdc-menu-surface--anchor ml">
+                    <button class="mdc-icon-button material-icons mdc-ripple-upgraded--unbounded mdc-ripple-upgraded" aria-label="User" onclick="mdcMenuAddClass('kc-user-dropdown')">
+                        U
+                    </button>
+                    <div class="mdc-menu mdc-menu-surface" name="user-menu" id="kc-user-dropdown">
+                        <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
+                            <#if referrer?has_content && referrer.url?has_content>
+                                <a href="${referrer.url}" id="referrer" class="mdc-list-item">
+                                    <span class="mdc-list-item__ripple"></span>
+                                    <span class="mdc-list-item__text">${msg("backTo",referrer.name)}</span>
+                                </a>
+                            </#if>
+                            <a class="mdc-list-item" href="${url.logoutUrl}">
+                                <span class="mdc-list-item__ripple"></span>
+                                <span class="mdc-list-item__text">${msg("doSignOut")}</span>
+                            </a>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="navbar-collapse navbar-collapse-1">
-                <div class="container">
-                    <ul class="nav navbar-nav navbar-utility">
-                        <#if realm.internationalizationEnabled>
-                            <li>
-                                <div class="kc-dropdown" id="kc-locale-dropdown">
-                                    <a href="#" id="kc-current-locale-link">${locale.current}</a>
-                                    <ul>
-                                        <#list locale.supported as l>
-                                            <li class="kc-dropdown-item"><a href="${l.url}">${l.label}</a></li>
-                                        </#list>
-                                    </ul>
-                                </div>
-                            <li>
-                        </#if>
-                        <#if referrer?has_content && referrer.url?has_content><li><a href="${referrer.url}" id="referrer">${msg("backTo",referrer.name)}</a></li></#if>
-                        <li><a href="${url.logoutUrl}">${msg("doSignOut")}</a></li>
-                    </ul>
-                </div>
-            </div>
+            
         </nav>
     </header>
 

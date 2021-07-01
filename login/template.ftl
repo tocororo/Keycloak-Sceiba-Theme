@@ -56,7 +56,7 @@
         </header>  -->
         <header class="mdc-top-app-bar mdc-theme--secondary-bg mdc-elevation--z8 ${properties.kcFormHeaderClass!}" style="position: relative;">
             <div class="mdc-top-app-bar__row">
-                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
                     <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
                         <div id="kc-locale">
                             <div id="kc-locale-wrapper" class="mdc-menu-surface--anchor ${properties.kcLocaleWrapperClass!}">

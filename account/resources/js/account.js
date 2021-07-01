@@ -16,9 +16,17 @@ window.onload = function() {
     new mdc.ripple.MDCRipple.attachTo(e);
   });
 
+  document.querySelectorAll('.mdc-icon-button').forEach(function(e) {
+    new mdc.iconButton.MDCIconButtonToggle.attachTo(e);
+  });
+  
   document.querySelectorAll('.mdc-menu').forEach(function(e) {
-    e.open = true;
+    console.log(e);
     new mdc.menu.MDCMenu.attachTo(e);
+  });
+
+  document.querySelectorAll('.mdc-menu-surface').forEach(function(e) {
+    new mdc.menuSurface.MDCMenuSurface.attachTo(e);
   });
 
   document.querySelectorAll('.mdc-list').forEach(function(e) {
@@ -35,4 +43,14 @@ window.onload = function() {
   // menu.open = true;
   // menu.setFixedPosition(true);
   mdc.autoInit();
+  console.log(mdc);
 };
+
+function mdcMenuAddClass(object){
+  console.log(object);
+  document.getElementById(object).className = "mdc-menu mdc-menu-surface mdc-menu-surface--open";
+}
+
+// document.onclick = function(){
+//   document.getElementById('kc-locale-dropdown').className = "mdc-menu mdc-menu-surface";
+// };

@@ -8,6 +8,7 @@
 
     <title>${msg("accountManagementTitle")}</title>
     <link rel="icon" href="${url.resourcesPath}/img/favicon.ico">
+    <#--  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">  -->
     <#if properties.stylesCommon?has_content>
         <#list properties.stylesCommon?split(' ') as style>
             <link href="${url.resourcesCommonPath}/${style}" rel="stylesheet" />
@@ -34,7 +35,7 @@
             <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
                 <#if realm.internationalizationEnabled>
                     <div class="mdc-menu-surface--anchor mr">
-                        <button class="mdc-icon-button material-icons mdc-ripple-upgraded--unbounded mdc-ripple-upgraded" aria-label="Add to favorites" onclick="mdcMenuAddClass('kc-locale-dropdown')">L</button>
+                        <button class="mdc-icon-button material-icons mdc-ripple-upgraded--unbounded mdc-ripple-upgraded" aria-label="Languajes" aria-describedby="tooltip-locale" onclick="mdcMenuAddClass('kc-locale-dropdown')">translate</button>
                         <div class="mdc-menu mdc-menu-surface" name="locale-menu" id="kc-locale-dropdown">
                             <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
                                 <#list locale.supported as l>
@@ -56,8 +57,8 @@
                 </#if>
 
                 <div class="mdc-menu-surface--anchor ml">
-                    <button class="mdc-icon-button material-icons mdc-ripple-upgraded--unbounded mdc-ripple-upgraded" aria-label="User" onclick="mdcMenuAddClass('kc-user-dropdown')">
-                        U
+                    <button class="mdc-icon-button material-icons mdc-ripple-upgraded--unbounded mdc-ripple-upgraded" aria-label="User" aria-describedby="tooltip-account" onclick="mdcMenuAddClass('kc-user-dropdown')">
+                        account_circle
                     </button>
                     <div class="mdc-menu mdc-menu-surface" name="user-menu" id="kc-user-dropdown">
                         <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
@@ -79,32 +80,87 @@
         </nav>
     </header>
 
-    <div class="container">
-        <div class="bs-sidebar col-sm-3">
-            <ul>
-                <li class="<#if active=='account'>active</#if>"><a href="${url.accountUrl}">${msg("account")}</a></li>
-                <#if features.passwordUpdateSupported><li class="<#if active=='password'>active</#if>"><a href="${url.passwordUrl}">${msg("password")}</a></li></#if>
-                <li class="<#if active=='totp'>active</#if>"><a href="${url.totpUrl}">${msg("authenticator")}</a></li>
-                <#if features.identityFederation><li class="<#if active=='social'>active</#if>"><a href="${url.socialUrl}">${msg("federatedIdentity")}</a></li></#if>
-                <li class="<#if active=='sessions'>active</#if>"><a href="${url.sessionsUrl}">${msg("sessions")}</a></li>
-                <li class="<#if active=='applications'>active</#if>"><a href="${url.applicationsUrl}">${msg("applications")}</a></li>
-                <#if features.log><li class="<#if active=='log'>active</#if>"><a href="${url.logUrl}">${msg("log")}</a></li></#if>
-                <#if realm.userManagedAccessAllowed && features.authorization><li class="<#if active=='authorization'>active</#if>"><a href="${url.resourceUrl}">${msg("myResources")}</a></li></#if>
-            </ul>
+<div class="flex flex-center">
+    <aside class="mdc-drawer mdc-drawer--dismissible mdc-drawer--open">
+        <div class="mdc-drawer__content">
+            <nav class="mdc-list">
+                <a class="mdc-list-item" href="${url.accountUrl}">
+                    <span class="mdc-list-item__ripple"></span>
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">manage_accounts</i>
+                    <span class="mdc-list-item__text">${msg("account")}</span>
+                </a>
+                <#if features.passwordUpdateSupported>
+                    <a class="mdc-list-item" href="${url.passwordUrl}">
+                        <span class="mdc-list-item__ripple"></span>
+                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">password</i>
+                        <span class="mdc-list-item__text">${msg("password")}</span>
+                    </a>
+                </#if>
+                <a class="mdc-list-item" href="${url.totpUrl}">
+                    <span class="mdc-list-item__ripple"></span>
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">security</i>
+                    <span class="mdc-list-item__text">${msg("authenticator")}</span>
+                </a>
+                <#if features.identityFederation>
+                    <a class="mdc-list-item" href="${url.socialUrl}">
+                        <span class="mdc-list-item__ripple"></span>
+                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">perm_identity</i>
+                        <span class="mdc-list-item__text">${msg("federatedIdentity")}</span>
+                    </a>
+                </#if>
+                <a class="mdc-list-item" href="${url.sessionsUrl}">
+                    <span class="mdc-list-item__ripple"></span>
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">accessibility</i>
+                    <span class="mdc-list-item__text">${msg("sessions")}</span>
+                </a>
+                <a class="mdc-list-item" href="${url.applicationsUrl}">
+                    <span class="mdc-list-item__ripple"></span>
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">settings_applications</i>
+                    <span class="mdc-list-item__text">${msg("applications")}</span>
+                </a>
+                <#if features.log>
+                    <a class="mdc-list-item" href="${url.logUrl}">
+                        <span class="mdc-list-item__ripple"></span>
+                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">analytics</i>
+                        <span class="mdc-list-item__text">${msg("log")}</span>
+                    </a>
+                </#if>
+                <#if realm.userManagedAccessAllowed && features.authorization>
+                    <a class="mdc-list-item" href="${url.resourceUrl}">
+                        <span class="mdc-list-item__ripple"></span>
+                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">assessment</i>
+                        <span class="mdc-list-item__text">${msg("myResources")}</span>
+                    </a>
+                </#if>
+            </nav>
         </div>
+    </aside>
 
-        <div class="col-sm-9 content-area">
-            <#if message?has_content>
-                <div class="alert alert-${message.type}">
-                    <#if message.type=='success' ><span class="pficon pficon-ok"></span></#if>
-                    <#if message.type=='error' ><span class="pficon pficon-error-circle-o"></span></#if>
-                    <span class="kc-feedback-text">${kcSanitize(message.summary)?no_esc}</span>
-                </div>
-            </#if>
+    <div class="col-sm-9 content-area">
+        <#if message?has_content>
+            <div class="alert alert-${message.type}">
+                <#if message.type=='success' ><span class="pficon pficon-ok"></span></#if>
+                <#if message.type=='error' ><span class="pficon pficon-error-circle-o"></span></#if>
+                <span class="kc-feedback-text">${kcSanitize(message.summary)?no_esc}</span>
+            </div>
+        </#if>
 
-            <#nested "content">
-        </div>
+        <#nested "content">
     </div>
+</div>
+
+
+<#--  TOOLTIPS  -->
+<div id="tooltip-locale" class="mdc-tooltip" role="tooltip" aria-haspopup="dialog" aria-hidden="true">
+  <div class="mdc-tooltip__surface">
+    ${locale.current}
+  </div>
+</div>
+<div id="tooltip-account" class="mdc-tooltip" role="tooltip" aria-haspopup="dialog" aria-hidden="true">
+  <div class="mdc-tooltip__surface">
+    ${msg("client_account")}
+  </div>
+</div>
 
 </body>
 </html>

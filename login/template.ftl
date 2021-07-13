@@ -130,14 +130,21 @@
             <#-- App-initiated actions should not see warning messages about the need to complete the action -->
             <#-- during login.                                                                               -->
             <#if displayMessage && message?has_content && (message.type != 'warning' || !isAppInitiatedAction??)>
-                <div class="alert-${message.type} ${properties.kcAlertClass!} pf-m-<#if message.type = 'error'>danger<#else>${message.type}</#if>">
-                    <div class="pf-c-alert__icon">
-                        <#if message.type = 'success'><span class="${properties.kcFeedbackSuccessIcon!}"></span></#if>
-                        <#if message.type = 'warning'><span class="${properties.kcFeedbackWarningIcon!}"></span></#if>
-                        <#if message.type = 'error'><span class="${properties.kcFeedbackErrorIcon!}"></span></#if>
-                        <#if message.type = 'info'><span class="${properties.kcFeedbackInfoIcon!}"></span></#if>
+                <div id="alert-snackbar" class="mdc-snackbar mdc-snackbar--open">
+                    <div class="mdc-snackbar__surface" role="status">
+                        <div class="mdc-snackbar__label flex" aria-live="polite" aria-atomic="false">
+                            <#if message.type = 'success'><span class="material-icons pr-1">check_circle</span></#if>
+                            <#if message.type = 'warning'><span class="material-icons pr-1">warning</span></#if>
+                            <#if message.type = 'error'><span class="material-icons pr-1">error</span></#if>
+                            <#if message.type = 'info'><span class="material-icons pr-1">info</span></#if>
+                            ${kcSanitize(message.summary)?no_esc}
+                        </div>
+                        <div class="mdc-snackbar__action" aria-atomic="true">
+                            <button class="mdc-icon-button mdc-snackbar__dismiss material-icons" onclick="dismissSnakbar('alert-snackbar')">
+                                close
+                            </button>
+                        </div>
                     </div>
-                        <span class="${properties.kcAlertTitleClass!}">${kcSanitize(message.summary)?no_esc}</span>
                 </div>
             </#if>
 

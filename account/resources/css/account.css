@@ -41,6 +41,7 @@ hr{
     flex-wrap: wrap;
     width: 100%;
     margin-left: 272px;
+    padding: 30px 16px 0px;
 }
 
 /* ************************* Material Web Components ************************* */
@@ -129,4 +130,15 @@ hr{
 
 .mr{
     margin-right: 8px;
+}
+
+.mt-1{
+    margin-top: 16px;
+}
+
+
+/* ************************* WIDTH SECCION *********************** */
+.w-3{
+    width: 100%;
+    max-width: 364px;
 }

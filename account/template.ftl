@@ -137,10 +137,21 @@
     </aside>
     <div class="col-sm-9 content-area">
         <#if message?has_content>
-            <div class="alert alert-${message.type}">
-                <#if message.type=='success' ><span class="pficon pficon-ok"></span></#if>
-                <#if message.type=='error' ><span class="pficon pficon-error-circle-o"></span></#if>
-                <span class="kc-feedback-text">${kcSanitize(message.summary)?no_esc}</span>
+            <div id="alert-snackbar" class="mdc-snackbar mdc-snackbar--open">
+                <div class="mdc-snackbar__surface" role="status">
+                    <div class="mdc-snackbar__label flex" aria-live="polite" aria-atomic="false">
+                        <#if message.type = 'success'><span class="material-icons pr-1">check_circle</span></#if>
+                        <#if message.type = 'warning'><span class="material-icons pr-1">warning</span></#if>
+                        <#if message.type = 'error'><span class="material-icons pr-1">error</span></#if>
+                        <#if message.type = 'info'><span class="material-icons pr-1">info</span></#if>
+                        ${kcSanitize(message.summary)?no_esc}
+                    </div>
+                    <div class="mdc-snackbar__action" aria-atomic="true">
+                        <button class="mdc-icon-button mdc-snackbar__dismiss material-icons" onclick="dismissSnakbar('alert-snackbar')">
+                            close
+                        </button>
+                    </div>
+                </div>
             </div>
         </#if>
 

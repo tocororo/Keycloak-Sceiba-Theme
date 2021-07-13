@@ -30,9 +30,23 @@ window.onload = function() {
     new mdc.chips.MDCChipSet.attachTo(e);
   });
 
+  // Initialise all MDC icons
+  document.querySelectorAll('.mdc-icon-button').forEach(function(e) {
+    new mdc.iconButton.MDCIconButtonToggle.attachTo(e);
+  });
+
+  document.querySelectorAll('.mdc-snackbar').forEach(function(e) {
+    new mdc.snackbar.MDCSnackbar.attachTo(e);
+  });
+
   // // Add a menu effect to all MDC menus
   // const menu = new MDCMenu(document.querySelector('.mdc-menu'));
   // menu.open = true;
   // menu.setFixedPosition(true);
   mdc.autoInit();
 };
+
+
+function dismissSnakbar(id){
+  document.getElementById(id).className = 'mdc-snackbar';
+}

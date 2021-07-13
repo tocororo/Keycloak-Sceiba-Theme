@@ -52,6 +52,11 @@ window.onload = function() {
   document.querySelectorAll('.mdc-tooltip').forEach(function(e) {
     new mdc.tooltip.MDCTooltip.attachTo(e);
   });
+
+  document.querySelectorAll('.mdc-snackbar').forEach(function(e) {
+    new mdc.snackbar.MDCSnackbar.attachTo(e);
+  });
+
   mdc.autoInit();
 
   // select the drawer menu to make as selected the item that its url is equal to the current one
@@ -73,4 +78,8 @@ function mdcMenuAddClass(object){
   });
   // add class '.mdc-menu-surface--open' to especific menu
   document.getElementById(object).className = "mdc-menu mdc-menu-surface mdc-menu-surface--open";
+}
+
+function dismissSnakbar(id){
+  document.getElementById(id).className = 'mdc-snackbar';
 }

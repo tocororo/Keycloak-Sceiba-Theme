@@ -34,6 +34,14 @@ hr{
     background-color: #e6e6e6;
     margin-top: 16px;
 }
+.content-area{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: 272px;
+}
 
 /* ************************* Material Web Components ************************* */
 
@@ -91,8 +99,11 @@ hr{
 
 @media (max-width: 750px) {
     .mdc-drawer {
-    width: 56px;
-}
+        width: 56px;
+    }
+    .content-area{
+        margin-left: 72px;
+    }
 }
 
 

@@ -135,7 +135,6 @@
             </nav>
         </div>
     </aside>
-
     <div class="col-sm-9 content-area">
         <#if message?has_content>
             <div class="alert alert-${message.type}">

@@ -2,28 +2,15 @@
 <@layout.mainLayout active='account' bodyClass='user'; section>
 
     <div class="w-3">
-        <div class="col-md-10">
-            <span class="mdc-typography mdc-typography--headline4">${msg("editAccountHtmlTitle")}</span>
-        </div>
-        <div class="col-md-2 subtitle">
-            <span class="mdc-typography mdc-typography--subtitle2"><span class="required">*</span> ${msg("requiredFields")}</span>
-        </div>
+        <h2 class="mdc-typography mdc-typography--headline4">${msg("editAccountHtmlTitle")}</h2>
+        <span class="mdc-typography mdc-typography--subtitle2"><span class="required">*</span> ${msg("requiredFields")}</span>
     </div>
 
-    <form action="${url.accountUrl}" class="form-horizontal" method="post">
+    <form action="${url.accountUrl}" class="form-horizontal w-3" method="post">
 
         <input type="hidden" id="stateChecker" name="stateChecker" value="${stateChecker}">
 
         <#if !realm.registrationEmailAsUsername>
-            <#--  <div class="form-group ${messagesPerField.printIfExists('username','has-error')}">
-                <div class="col-sm-2 col-md-2">
-                    <label for="username" class="control-label">${msg("username")}</label> <#if realm.editUsernameAllowed><span class="required">*</span></#if>
-                </div>
-
-                <div class="col-sm-10 col-md-10">
-                    <input type="text" class="form-control" id="username" name="username" <#if !realm.editUsernameAllowed>disabled="disabled"</#if> value="${(account.username!'')}"/>
-                </div>
-            </div>  -->
             <#--  Username field  -->
             <div class="text-field-container">
                 <div class="mdc-text-field mdc-text-field--outlined mdc-text-field-100 ${properties.kcFormGroupClass!}">
@@ -68,16 +55,6 @@
             </#if>
         </div>
         <#--  End Email field  -->
-
-        <#--  <div class="form-group ${messagesPerField.printIfExists('firstName','has-error')}">
-            <div class="col-sm-2 col-md-2">
-                <label for="firstName" class="control-label">${msg("firstName")}</label> <span class="required">*</span>
-            </div>
-
-            <div class="col-sm-10 col-md-10">
-                <input type="text" class="form-control" id="firstName" name="firstName" value="${(account.firstName!'')}"/>
-            </div>
-        </div>  -->
 
         <#--  firstName field  -->
         <div class="text-field-container">
@@ -127,8 +104,15 @@
             <div id="kc-form-buttons" class="col-md-offset-2 col-md-10 submit">
                 <div class="">
                     <#if url.referrerURI??><a href="${url.referrerURI}">${kcSanitize(msg("backToApplication")?no_esc)}</a></#if>
-                    <button type="submit" class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}" name="submitAction" value="Save">${msg("doSave")}</button>
-                    <button type="submit" class="${properties.kcButtonClass!} ${properties.kcButtonDefaultClass!} ${properties.kcButtonLargeClass!}" name="submitAction" value="Cancel">${msg("doCancel")}</button>
+                    <button type="submit" class="mdc-button mdc-button--raised ${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}" name="submitAction" value="Save">
+                        <span class="mdc-button__ripple"></span>
+                        <span class="mdc-button__label">${msg("doSave")}</span>
+                    </button>
+    
+                    <button type="submit" class="mdc-button mdc-button--outlined ${properties.kcButtonClass!} ${properties.kcButtonDefaultClass!} ${properties.kcButtonLargeClass!}" name="submitAction" value="Cancel">
+                        <span class="mdc-button__ripple"></span>
+                        <span class="mdc-button__label">${msg("doCancel")}</span>
+                    </button>
                 </div>
             </div>
         </div>

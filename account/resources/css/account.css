@@ -41,13 +41,19 @@ hr{
     flex-wrap: wrap;
     width: 100%;
     margin-left: 272px;
+    margin-top: 64px;
     padding: 0px 16px;
 }
 
 /* ************************* Material Web Components ************************* */
 
 .mdc-top-app-bar{
-    position: relative;
+    /* position: relative; */
+}
+
+.mdc-drawer{
+    position: fixed;
+    top: 64px;
 }
 
 .mdc-card{
@@ -107,6 +113,11 @@ hr{
     }
 }
 
+@media (max-width: 599px){
+    .mdc-drawer {
+        top: 56px;
+    }
+}
 
 /* ************************* FLEX SECCION *********************** */
 .flex-center{
@@ -136,6 +147,9 @@ hr{
     margin-top: 16px;
 }
 
+.mb-4{
+    margin-bottom: 64px;
+}
 .pr-1{
     padding-right: 8px;
 }

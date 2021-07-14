@@ -2,13 +2,9 @@
 <@layout.mainLayout active='totp' bodyClass='totp'; section>
 
     <div class="row">
-        <div class="col-md-10">
-            <h2>${msg("authenticatorTitle")}</h2>
-        </div>
+        <h2 class="mdc-typography mdc-typography--headline4">${msg("authenticatorTitle")}</h2>
         <#if totp.otpCredentials?size == 0>
-            <div class="col-md-2 subtitle">
-                <span class="subtitle"><span class="required">*</span> ${msg("requiredFields")}</span>
-            </div>
+            <span class="mdc-typography mdc-typography--subtitle2"><span class="required">*</span> ${msg("requiredFields")}</span>
         </#if>
     </div>
 
@@ -51,7 +47,7 @@
 
     <hr/>
 
-    <ol>
+    <ol class="mdc-typography--body2">
         <li>
             <p>${msg("totpStep1")}</p>
 
@@ -96,41 +92,57 @@
 
     <hr/>
 
-    <form action="${url.totpUrl}" class="form-horizontal" method="post">
+    <form action="${url.totpUrl}" class="form-horizontal w-3 mb-4" method="post">
         <input type="hidden" id="stateChecker" name="stateChecker" value="${stateChecker}">
-        <div class="form-group">
-            <div class="col-sm-2 col-md-2">
-                <label for="totp" class="control-label">${msg("authenticatorCode")}</label> <span class="required">*</span>
-            </div>
-
-            <div class="col-sm-10 col-md-10">
-                <input type="text" class="form-control" id="totp" name="totp" autocomplete="off" autofocus>
+        
+        <#--  totp field  -->
+        <div class="text-field-container">
+            <div class="mdc-text-field mdc-text-field--outlined mdc-text-field-100 ${properties.kcFormGroupClass!}">
+                <div class="mdc-notched-outline mdc-notched-outline--upgraded">
+                    <div class="mdc-notched-outline__leading"></div>
+                    <div class="mdc-notched-outline__notch">
+                        <label for="totp" class="mdc-floating-label">${msg("authenticatorCode")} <span class="required">*</span></label>
+                    </div>
+                    <div class="mdc-notched-outline__trailing"></div>
+                </div>
+                <input tabindex="1" type="text" class="mdc-text-field__input" id="totp" name="totp" autocomplete="off" autofocus/>
                 <input type="hidden" id="totpSecret" name="totpSecret" value="${totp.totpSecret}"/>
             </div>
-
-
         </div>
+        <#--  End totp field  -->
 
-        <div class="form-group" ${messagesPerField.printIfExists('userLabel',properties.kcFormGroupErrorClass!)}">
-            <div class="col-sm-2 col-md-2">
-                <label for="userLabel" class="control-label">${msg("totpDeviceName")}</label> <#if totp.otpCredentials?size gte 1><span class="required">*</span></#if>
+        <div class="text-field-container">
+            <div class="mdc-text-field mdc-text-field--outlined mdc-text-field-100 ${properties.kcFormGroupClass!}">
+                <div class="mdc-notched-outline mdc-notched-outline--upgraded">
+                    <div class="mdc-notched-outline__leading"></div>
+                    <div class="mdc-notched-outline__notch">
+                        <label for="userLabel" class="mdc-floating-label">${msg("totpDeviceName")}</label>
+                    </div>
+                    <div class="mdc-notched-outline__trailing"></div>
+                </div>
+                <input tabindex="2" type="text" class="mdc-text-field__input" id="userLabel" name="userLabel" autocomplete="off"/>
             </div>
-
-            <div class="col-sm-10 col-md-10">
-                <input type="text" class="form-control" id="userLabel" name="userLabel" autocomplete="off">
-            </div>
+            <#if messagesPerField.existsError('userLabel')>
+                <div class="mdc-text-field-helper-line">
+                    <span id="input-error" class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent mdc-text-field-helper-text--validation-msg mdc-text-field-error" aria-live="polite">
+                            ${kcSanitize(messagesPerField.getFirstError('userLabel'))?no_esc}
+                    </span>
+                </div>
+            </#if>
         </div>
+        <#--  End userLabel field  -->
 
         <div class="form-group">
             <div id="kc-form-buttons" class="col-md-offset-2 col-md-10 submit">
                 <div class="">
-                    <button type="submit"
-                            class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}"
-                            id="saveTOTPBtn" name="submitAction" value="Save">${msg("doSave")}
+                    <button type="submit" class="mdc-button mdc-button--raised ${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}" id="saveTOTPBtn" name="submitAction" value="Save">
+                        <span class="mdc-button__ripple"></span>
+                        <span class="mdc-button__label">${msg("doSave")}</span>
                     </button>
-                    <button type="submit"
-                            class="${properties.kcButtonClass!} ${properties.kcButtonDefaultClass!} ${properties.kcButtonLargeClass!}"
-                            id="cancelTOTPBtn" name="submitAction" value="Cancel">${msg("doCancel")}
+    
+                    <button type="submit" class="mdc-button mdc-button--outlined ${properties.kcButtonClass!} ${properties.kcButtonDefaultClass!} ${properties.kcButtonLargeClass!}" id="cancelTOTPBtn" name="submitAction" value="Cancel">
+                        <span class="mdc-button__ripple"></span>
+                        <span class="mdc-button__label">${msg("doCancel")}</span>
                     </button>
                 </div>
             </div>

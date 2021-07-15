@@ -57,6 +57,10 @@ window.onload = function() {
     new mdc.snackbar.MDCSnackbar.attachTo(e);
   });
 
+  document.querySelectorAll('.mdc-data-table').forEach(function(e) {
+    new mdc.dataTable.MDCDataTable.attachTo(e);
+  });
+
   mdc.autoInit();
 
   // select the drawer menu to make as selected the item that its url is equal to the current one

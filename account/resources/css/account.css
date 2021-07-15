@@ -104,6 +104,76 @@ hr{
     display: none;
 }
 
+.mdc-data-table{
+    overflow: auto;
+    width: 100%;
+}
+.mdc-data-table__header-cell {
+    font-weight: bold;
+}
+
+#form-table-responsive{
+    width: 90%;
+}
+
+/* update tabla width */
+@media (max-width: 1720px) {
+    #form-table-responsive{
+        width: 80%;
+    }
+}
+@media (max-width: 1480px) {
+    #form-table-responsive{
+        width: 70%;
+    }
+}
+@media (max-width: 985px) {
+    #form-table-responsive{
+        width: 60%;
+    }
+}
+@media (max-width: 750px) {
+    #form-table-responsive {
+        width: 75%;
+    }
+}
+@media (max-width: 1359px) {
+    .mdc-data-table{
+        overflow: auto;
+        width: 95%;
+    }
+}
+@media (max-width: 1320px) {
+    .mdc-data-table{
+        overflow: auto;
+        width: 85%;
+    }
+}
+@media (max-width: 1200px) {
+    .mdc-data-table{
+        overflow: auto;
+        width: 75%;
+    }
+}
+@media (max-width: 1080px) {
+    .mdc-data-table{
+        overflow: auto;
+        width: 60%;
+    }
+}
+@media (max-width: 750px) {
+    .mdc-data-table{
+        overflow: auto;
+        width: 85%;
+    }
+}
+@media (max-width: 540px) {
+    .mdc-data-table{
+        overflow: auto;
+        width: 70%;
+    }
+}
+
 @media (max-width: 750px) {
     .mdc-drawer {
         width: 56px;
